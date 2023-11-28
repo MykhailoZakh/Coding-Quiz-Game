@@ -1,0 +1,42 @@
+header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 20px;
+    color: pink;
+}
+
+header h2 {
+   font-size: 20px;
+} 
+main{
+    border: 3px solid black;
+    display: block;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 160px;
+    
+    
+}
+main h3 {
+    /* border: 3px solid black; */
+    font-size: 30px;
+    font-weight: bold;
+}
+
+main p {
+
+    /* border: 3px solid black; */
+    margin: 0;
+    font-size: 18px;
+}
+
+main button {
+
+    margin-top: 20px;
+    font-size: 25px;
+}
+
