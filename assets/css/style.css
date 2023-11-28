@@ -14,11 +14,19 @@ header h2 {
 } 
 main{
     border: 3px solid black;
-    display: block;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 160px;
     
+    
+}
+
+#conteiner {
+    display: block;
+    text-align: center;
+    width: 40%;
+    border: 3px solid black;
     
 }
 main h3 {
@@ -35,7 +43,6 @@ main p {
 }
 
 main button {
-
     margin-top: 20px;
     font-size: 25px;
 }
