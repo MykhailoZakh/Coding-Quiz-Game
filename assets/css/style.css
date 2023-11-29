@@ -22,13 +22,22 @@ main{
     
 }
 
-#conteiner {
+#container {
     display: block;
     text-align: center;
     width: 40%;
     border: 3px solid black;
     
 }
+
+#question-container {
+    display: block;
+    text-align: left;
+    width: 40%;
+    border: 3px solid black;
+}
+
+
 main h3 {
     /* border: 3px solid black; */
     font-size: 30px;
@@ -42,7 +51,14 @@ main p {
     font-size: 18px;
 }
 
-main button {
+button {
+    display: block;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+#start-button {
+    display: inline;
     margin-top: 20px;
     font-size: 25px;
 }
