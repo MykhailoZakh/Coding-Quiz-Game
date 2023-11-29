@@ -130,6 +130,10 @@ function changeButtonsAnswers(question) {
 function addScreen(question){
     containerEL.setAttribute("id", "question-container")
     quizQuestion(question.qText);
+    let h4 = document.createElement("h4");
+    h4.setAttribute("class", "text-win-lose");
+    h4.textContent = "";
+    containerEL.appendChild(h4);
 // for logic to add all question text
     for(let i = 0; i <question.answer.length; i++) {
     quizAnswers(question.answer[i]);
@@ -145,81 +149,121 @@ function changeScreen(question) {
         }
 }
 
+function winCheckText() {
+    let h4 = document.createElement("h4");
+    let h4old = document.querySelector("h4");
+    h4.textContent = `Correct ✅`;
+    containerEL.replaceChild(h4, h4old);
+    };
 
+    function loseCheckText() {
+        let h4 = document.createElement("h4");
+        let h4old = document.querySelector("h4");
+        h4.textContent = `Wrong ❌`;
+        containerEL.replaceChild(h4, h4old);
+        };
 //  Event listener for button's answers for quiz question
 function checkAnswer(question){
-let buttonEL = document.querySelector(".container");
-    buttonEL.addEventListener("click", function(event){
+// let buttonEL = document.querySelector(".container");
+//     buttonEL.addEventListener("click", function(event)
+    let buttonEL = document.querySelectorAll("button");
+    for(i = 0; i < buttonEL.length; i++){
+    buttonEL[i].addEventListener("click", function(event)
+    {
     console.log(`click2`)
     event.stopPropagation();
-    if (event.target.matches(".button")){
+    // if (event.target.matches(".button")){
         console.log('click');
     let element = event.target;
     text = element.textContent.split("");
     
     console.log('1');
-    if(text[0] == question.correctAnswer) {
+    
+    if(text[0] === question.correctAnswer) {
+        
+        
         secondsLeft = secondsLeft + 10;
         gameTimeEL.textContent = ` ${secondsLeft}`;
         changeScreen(questionArray[1]);
+        winCheckText();
         question2(questionArray[1]);
+        
         // clearInterval(timerIntercal);
         
     } else {
+        
         secondsLeft = secondsLeft - 5;
         gameTimeEL.textContent = ` ${secondsLeft}`;
         changeScreen(questionArray[1]);
+        loseCheckText();
         question2(questionArray[1]);
+        
         // clearInterval(timerIntercal);
         
     }
 
-    }})
-}
+    })
+}}
+
+// let buttonEL = document.querySelectorAll("button");
+// for(i = 0; i < buttonEL.length; i++){
+//     buttonEL[i].addEventListener("click", function(event)
+// }
 
 function question2(question){
-    let buttonEL = document.querySelector(".container");
-    buttonEL.addEventListener("click", function(event){
+    // let buttonEL = document.querySelector(".container");
+    // buttonEL.addEventListener("click", function(event)
+    let buttonEL = document.querySelectorAll("button");
+    for(i = 0; i < buttonEL.length; i++){
+    buttonEL[i].addEventListener("click", function(event)
+    {
     console.log(`click2`)
-    event.stopPropagation();
-    if (event.target.matches(".button")){
+    // event.stopPropagation();
+    // if (event.target.matches(".button")){
         console.log('click');
         let element = event.target;
         text = element.textContent.split("");
     
         console.log('2');
-        if(text[0] == question.correctAnswer) {
+        if(text[0] === question.correctAnswer) {
             secondsLeft = secondsLeft + 10;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             changeScreen(questionArray[2]);
+            winCheckText();
             question3(questionArray[2]);
         } else {
             secondsLeft = secondsLeft - 5;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             changeScreen(questionArray[2]);
+            loseCheckText();
             question3(questionArray[2]);
     }
 
-    }})
+    })
 
-}
+}}
 
 
 function question3(question){
-    let buttonEL = document.querySelector(".container");
-    buttonEL.addEventListener("click", function(event){
+    // let buttonEL = document.querySelector(".container");
+    // buttonEL.addEventListener("click", function(event)
+    let buttonEL = document.querySelectorAll("button");
+    for(i = 0; i < buttonEL.length; i++){
+    buttonEL[i].addEventListener("click", function(event)
+    {
     console.log(`click2`)
-    event.stopPropagation();
-    if (event.target.matches(".button")){
+    // event.stopPropagation();
+    // if (event.target.matches(".button")){
         console.log('click');
         let element = event.target;
         text = element.textContent.split("");
     
         console.log('3');
-        if(text[0] == question.correctAnswer) {
+        if(text[0] === question.correctAnswer) {
             secondsLeft = secondsLeft + 10;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             changeScreen(questionArray[3]);
+            winCheckText();
             question4(questionArray[3]);
             return;
         
@@ -227,20 +271,26 @@ function question3(question){
             secondsLeft = secondsLeft - 5;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             changeScreen(questionArray[3]);
+            loseCheckText();
             question4(questionArray[3]);
             return;
         
         }
 
-    }})
-}
+    })
+}}
 
 function question4(question){
-    let buttonEL = document.querySelector(".container");
-    buttonEL.addEventListener("click", function(event){
+    // let buttonEL = document.querySelector(".container");
+    // buttonEL.addEventListener("click", function(event)
+    let buttonEL = document.querySelectorAll("button");
+    for(i = 0; i < buttonEL.length; i++){
+    buttonEL[i].addEventListener("click", function(event)
+    {
     console.log(`click2`)
-    event.stopPropagation();
-        if (event.target.matches(".button")){
+    // event.stopPropagation();
+        // if (event.target.matches(".button")){
+            let h4 = document.querySelector("h4");
             console.log('click');
             let element = event.target;
             text = element.textContent.split("");
@@ -250,17 +300,21 @@ function question4(question){
             secondsLeft = secondsLeft + 10;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             removeQuestion();
-            return;
+            addFinalScreen();
+            h4.textContent = '';
+            
         
         } else {
             secondsLeft = secondsLeft - 5;
             gameTimeEL.textContent = ` ${secondsLeft}`;
             removeQuestion();
-            return;
+            addFinalScreen();
+            h4.textContent = '';
+            
         }
 
-    }})
-}
+    })
+}}
 
 function removeQuestion(){
     let h3 = document.querySelector("h3");
@@ -271,6 +325,40 @@ function removeQuestion(){
         }
 }
 
+function addFinalScreen(){
+    inputValue = [];
+    scoreValue =[];
+    let score = secondsLeft;
+    secondsLeft = 1;
+    let h3 = document.createElement("h3");
+    let paragraph = document.createElement("p");
+    let form = document.createElement("form");
+    h3.textContent = "All done!";
+    paragraph.textContent = `Your final score is ${score}`;
+    form.setAttribute("method", "POST");
+    containerEL.appendChild(h3);
+    containerEL.appendChild(paragraph);
+    containerEL.appendChild(form);
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+    let button = document.createElement("button");
+    label.textContent = `Enter your initials:`;
+    button.textContent = `Submit`;
+    input.setAttribute("name", "submited-initails")
+    form.appendChild(label);
+    form.appendChild(input);
+    form.appendChild(button);
+
+    // Event listener for submit button
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+        var inputText = input.value.trim();
+        inputValue.push(inputText);
+        scoreValue.push(score);
+        localStorage.setItem("Initials", JSON.stringify(inputValue));
+        localStorage.setItem("Score", JSON.stringify(scoreValue)); 
+      });
+}
 
 // Start Button event listener that start the game 
 // startButtonEL.addEventListener("click", setTime);
