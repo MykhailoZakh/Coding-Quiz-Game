@@ -31,9 +31,9 @@ let questionArray = [
         qText: "Some question here3",
         answer: [
              "1. Answer13", 
-             "2. Answer2", 
-             "3. Answer3", 
-             "4. Answer4" 
+             "2. Answer23", 
+             "3. Answer33", 
+             "4. Answer43" 
         ],
         correctAnswer: "1"
     }),
@@ -41,9 +41,9 @@ let questionArray = [
         qText: "Some question here4",
         answer: [
              "1. Answer14", 
-             "2. Answer2", 
-             "3. Answer3", 
-             "4. Answer4" 
+             "2. Answer24", 
+             "3. Answer34", 
+             "4. Answer44" 
         ],
         correctAnswer: "4"
     })
@@ -83,7 +83,10 @@ let startButtonEL = document.querySelector("#start-button");
     let timerIntercal = setInterval(function(){
         secondsLeft--;
         gameTimeEL.textContent = ` ${secondsLeft}`;
-        if(secondsLeft === 0) {
+        
+        
+    
+        if(secondsLeft <= 0) {
             clearInterval(timerIntercal);
         }
     }, 1000);
@@ -112,6 +115,7 @@ function quizQuestion(text) {
 function quizAnswers(text) {
     let button = document.createElement("button");
     button.textContent = `${text}`;
+    button.setAttribute('class', `button`);
     containerEL.appendChild(button);
 }
 
@@ -144,48 +148,135 @@ function changeScreen(question) {
 
 //  Event listener for button's answers for quiz question
 function checkAnswer(question){
-let buttonEL = document.querySelectorAll("button");
-    for(let i =0; i < buttonEL.length; i++){
-    buttonEL[i].addEventListener("click", function(event){
+let buttonEL = document.querySelector(".container");
+    buttonEL.addEventListener("click", function(event){
     console.log(`click2`)
-    let index = 0;
-    console.log(index);
+    event.stopPropagation();
+    if (event.target.matches(".button")){
+        console.log('click');
     let element = event.target;
     text = element.textContent.split("");
     
-    console.log(text);
+    console.log('1');
     if(text[0] == question.correctAnswer) {
         secondsLeft = secondsLeft + 10;
         gameTimeEL.textContent = ` ${secondsLeft}`;
-        changeScreen(questionArray[index + 1]);
-        index++;
-        console.log(index);
-        return index;
+        changeScreen(questionArray[1]);
+        question2(questionArray[1]);
+        // clearInterval(timerIntercal);
+        
     } else {
         secondsLeft = secondsLeft - 5;
         gameTimeEL.textContent = ` ${secondsLeft}`;
         changeScreen(questionArray[1]);
-        index++;
-        return index;
+        question2(questionArray[1]);
+        // clearInterval(timerIntercal);
         
     }
 
-    })
+    }})
+}
+
+function question2(question){
+    let buttonEL = document.querySelector(".container");
+    buttonEL.addEventListener("click", function(event){
+    console.log(`click2`)
+    event.stopPropagation();
+    if (event.target.matches(".button")){
+        console.log('click');
+        let element = event.target;
+        text = element.textContent.split("");
+    
+        console.log('2');
+        if(text[0] == question.correctAnswer) {
+            secondsLeft = secondsLeft + 10;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            changeScreen(questionArray[2]);
+            question3(questionArray[2]);
+        } else {
+            secondsLeft = secondsLeft - 5;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            changeScreen(questionArray[2]);
+            question3(questionArray[2]);
     }
+
+    }})
+
 }
 
 
+function question3(question){
+    let buttonEL = document.querySelector(".container");
+    buttonEL.addEventListener("click", function(event){
+    console.log(`click2`)
+    event.stopPropagation();
+    if (event.target.matches(".button")){
+        console.log('click');
+        let element = event.target;
+        text = element.textContent.split("");
+    
+        console.log('3');
+        if(text[0] == question.correctAnswer) {
+            secondsLeft = secondsLeft + 10;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            changeScreen(questionArray[3]);
+            question4(questionArray[3]);
+            return;
+        
+        } else {
+            secondsLeft = secondsLeft - 5;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            changeScreen(questionArray[3]);
+            question4(questionArray[3]);
+            return;
+        
+        }
+
+    }})
+}
+
+function question4(question){
+    let buttonEL = document.querySelector(".container");
+    buttonEL.addEventListener("click", function(event){
+    console.log(`click2`)
+    event.stopPropagation();
+        if (event.target.matches(".button")){
+            console.log('click');
+            let element = event.target;
+            text = element.textContent.split("");
+    
+        console.log('4');
+        if(text[0] == question.correctAnswer) {
+            secondsLeft = secondsLeft + 10;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            removeQuestion();
+            return;
+        
+        } else {
+            secondsLeft = secondsLeft - 5;
+            gameTimeEL.textContent = ` ${secondsLeft}`;
+            removeQuestion();
+            return;
+        }
+
+    }})
+}
+
+function removeQuestion(){
+    let h3 = document.querySelector("h3");
+    containerEL.removeChild(h3);
+    let button = document.querySelectorAll("button");
+    for(let i = 0; i < 4; i++) {
+        containerEL.removeChild(button[i]);
+        }
+}
 
 
 // Start Button event listener that start the game 
 // startButtonEL.addEventListener("click", setTime);
-startButtonEL.addEventListener("click", function(){  
-    console.log(`click`);
+startButtonEL.addEventListener("click", function(){
+    setTime()
     removeScreen();
     addScreen(questionArray[0]);
     checkAnswer(questionArray[0]);
-    if(index == 1){
-    checkAnswer(questionArray[1]);
-    console.log(index);
-    }
 });
