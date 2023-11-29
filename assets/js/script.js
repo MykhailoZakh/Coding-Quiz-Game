@@ -6,15 +6,48 @@ let containerEL = document.querySelector("#container");
 
 let secondsLeft = 10;
 
-let questinObjectOne = {
-    qText: "Some question here",
+let questionObjectOne = {
+    qText: "Some question here1",
     answer: [
-         "1. Answer1", 
+         "1. Answer11", 
          "2. Answer2", 
          "3. Answer3", 
          "4. Answer4" 
     ],
     correctAnswer: "2"
+} 
+
+let questionObjectTwo = {
+    qText: "Some question here2",
+    answer: [
+         "1. Answer12", 
+         "2. Answer2", 
+         "3. Answer3", 
+         "4. Answer4" 
+    ],
+    correctAnswer: "3"
+} 
+
+let questionObjectThree = {
+    qText: "Some question here3",
+    answer: [
+         "1. Answer13", 
+         "2. Answer2", 
+         "3. Answer3", 
+         "4. Answer4" 
+    ],
+    correctAnswer: "1"
+} 
+
+let questionObjectFour = {
+    qText: "Some question here4",
+    answer: [
+         "1. Answer14", 
+         "2. Answer2", 
+         "3. Answer3", 
+         "4. Answer4" 
+    ],
+    correctAnswer: "4"
 } 
 // init() function to add starter game interface
 function init(){
@@ -76,29 +109,40 @@ function quizAnswers(text) {
     containerEL.appendChild(button);
 }
 
+function changeButtonsAnswers(text) {
+    let button = document.querySelector("button");
+    button.textContent = ``;
+    button.textContent = `${text}`;
+}
 // Start Button event listener that start the game 
 // startButtonEL.addEventListener("click", setTime);
 startButtonEL.addEventListener("click", function(){  
     console.log(`click`);
     removeScreen();
-    addScreen();
-    checkAnswer()
+    addScreen(questionObjectOne);
+    checkAnswer(questionObjectOne);
 });
 
-function addScreen(){
+function addScreen(question){
     containerEL.setAttribute("id", "question-container")
-    quizQuestion(questinObjectOne.qText);
+    quizQuestion(question.qText);
 // for logic to add all question text
-    for(let i = 0; i <questinObjectOne.answer.length; i++) {
-    quizAnswers(questinObjectOne.answer[i]);
+    for(let i = 0; i <question.answer.length; i++) {
+    quizAnswers(question.answer[i]);
     }
     
 };
 
+function changeScreen(question) {
+    quizQuestion(question.qText);
+    for(let i = 0; i <question.answer.length; i++) {
+        changeButtonsAnswers(question.answer[i]);
+        }
+}
 
 
 //  Event listener for button's answers for quiz question
-function checkAnswer(){
+function checkAnswer(question){
 let buttonEL = document.querySelectorAll("button");
 for(let i =0; i < buttonEL.length; i++){
 buttonEL[i].addEventListener("click", function(event){
@@ -106,12 +150,14 @@ buttonEL[i].addEventListener("click", function(event){
     var element = event.target;
     text = element.textContent.split("");
     console.log(text);
-    if(text[0] == questinObjectOne.correctAnswer) {
+    if(text[0] == question.correctAnswer) {
         secondsLeft = secondsLeft + 10;
         gameTimeEL.textContent = ` ${secondsLeft}`;
+        changeScreen(questionObjectTwo);
     } else {
         secondsLeft = secondsLeft - 5;
         gameTimeEL.textContent = ` ${secondsLeft}`;
+        changeScreen(questionObjectTwo);
     }
 
 })
