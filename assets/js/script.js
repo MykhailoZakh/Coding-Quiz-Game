@@ -6,49 +6,55 @@ let containerEL = document.querySelector("#container");
 
 let secondsLeft = 10;
 
-let questionObjectOne = {
-    qText: "Some question here1",
-    answer: [
-         "1. Answer11", 
-         "2. Answer2", 
-         "3. Answer3", 
-         "4. Answer4" 
-    ],
-    correctAnswer: "2"
-} 
+let questionArray = [
+    ({
+        qText: "Some question here1",
+        answer: [
+            "1. Answer11", 
+            "2. Answer21", 
+            "3. Answer31", 
+            "4. Answer41" 
+        ],
+        correctAnswer: "2"
+    }),
+    ({
+        qText: "Some question here2",
+        answer: [
+             "1. Answer12", 
+             "2. Answer22", 
+             "3. Answer32", 
+             "4. Answer42" 
+        ],
+        correctAnswer: "3"
+    }),
+    ({
+        qText: "Some question here3",
+        answer: [
+             "1. Answer13", 
+             "2. Answer2", 
+             "3. Answer3", 
+             "4. Answer4" 
+        ],
+        correctAnswer: "1"
+    }),
+    ({
+        qText: "Some question here4",
+        answer: [
+             "1. Answer14", 
+             "2. Answer2", 
+             "3. Answer3", 
+             "4. Answer4" 
+        ],
+        correctAnswer: "4"
+    })
+];
+// let questionObjectOne = 
 
-let questionObjectTwo = {
-    qText: "Some question here2",
-    answer: [
-         "1. Answer12", 
-         "2. Answer2", 
-         "3. Answer3", 
-         "4. Answer4" 
-    ],
-    correctAnswer: "3"
-} 
+// let questionObjectTwo = 
 
-let questionObjectThree = {
-    qText: "Some question here3",
-    answer: [
-         "1. Answer13", 
-         "2. Answer2", 
-         "3. Answer3", 
-         "4. Answer4" 
-    ],
-    correctAnswer: "1"
-} 
+// let questionObjectThree = 
 
-let questionObjectFour = {
-    qText: "Some question here4",
-    answer: [
-         "1. Answer14", 
-         "2. Answer2", 
-         "3. Answer3", 
-         "4. Answer4" 
-    ],
-    correctAnswer: "4"
-} 
+// let questionObjectFour = 
 // init() function to add starter game interface
 function init(){
     console.log(`work`)
@@ -58,7 +64,7 @@ function init(){
     containerEL.appendChild(h3);
 
     let p1 = document.createElement("p");
-    p1.textContent = `Try to answer the following code-related questions whithin the time limit.` + `\n` +  `Keep in mind that incorrect answers will penalize your score/time by ten seconds`;
+    p1.innerHTML = `Try to answer the following code-related questions whithin the time limit. <br/>  Keep in mind that incorrect answers will penalize your score/time by ten seconds`;
     containerEL.appendChild(p1);
 
     let newButton = document.createElement("button");
@@ -109,19 +115,13 @@ function quizAnswers(text) {
     containerEL.appendChild(button);
 }
 
-function changeButtonsAnswers(text) {
-    let button = document.querySelector("button");
-    button.textContent = ``;
-    button.textContent = `${text}`;
+function changeButtonsAnswers(question) {
+    let button = document.querySelectorAll("button");
+    for(let i = 0; i <question.length; i++) {
+        containerEL.removeChild(button[i]);
+        }
 }
-// Start Button event listener that start the game 
-// startButtonEL.addEventListener("click", setTime);
-startButtonEL.addEventListener("click", function(){  
-    console.log(`click`);
-    removeScreen();
-    addScreen(questionObjectOne);
-    checkAnswer(questionObjectOne);
-});
+
 
 function addScreen(question){
     containerEL.setAttribute("id", "question-container")
@@ -135,8 +135,9 @@ function addScreen(question){
 
 function changeScreen(question) {
     quizQuestion(question.qText);
+    changeButtonsAnswers(question.answer);
     for(let i = 0; i <question.answer.length; i++) {
-        changeButtonsAnswers(question.answer[i]);
+        quizAnswers(question.answer[i]);
         }
 }
 
@@ -144,22 +145,47 @@ function changeScreen(question) {
 //  Event listener for button's answers for quiz question
 function checkAnswer(question){
 let buttonEL = document.querySelectorAll("button");
-for(let i =0; i < buttonEL.length; i++){
-buttonEL[i].addEventListener("click", function(event){
+    for(let i =0; i < buttonEL.length; i++){
+    buttonEL[i].addEventListener("click", function(event){
     console.log(`click2`)
-    var element = event.target;
+    let index = 0;
+    console.log(index);
+    let element = event.target;
     text = element.textContent.split("");
+    
     console.log(text);
     if(text[0] == question.correctAnswer) {
         secondsLeft = secondsLeft + 10;
         gameTimeEL.textContent = ` ${secondsLeft}`;
-        changeScreen(questionObjectTwo);
+        changeScreen(questionArray[index + 1]);
+        index++;
+        console.log(index);
+        return index;
     } else {
         secondsLeft = secondsLeft - 5;
         gameTimeEL.textContent = ` ${secondsLeft}`;
-        changeScreen(questionObjectTwo);
+        changeScreen(questionArray[1]);
+        index++;
+        return index;
+        
     }
 
-})
+    })
+    }
 }
-}
+
+
+
+
+// Start Button event listener that start the game 
+// startButtonEL.addEventListener("click", setTime);
+startButtonEL.addEventListener("click", function(){  
+    console.log(`click`);
+    removeScreen();
+    addScreen(questionArray[0]);
+    checkAnswer(questionArray[0]);
+    if(index == 1){
+    checkAnswer(questionArray[1]);
+    console.log(index);
+    }
+});
