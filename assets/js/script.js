@@ -87,7 +87,11 @@ let startButtonEL = document.querySelector("#start-button");
         
     
         if(secondsLeft <= 0) {
+            let h4 = document.querySelector("h4");
             clearInterval(timerIntercal);
+            removeQuestion();
+            addFinalScreen();
+            h4.textContent = '';
         }
     }, 1000);
 }
@@ -353,12 +357,17 @@ function addFinalScreen(){
     button.addEventListener("click", function(event) {
         event.preventDefault();
         var inputText = input.value.trim();
+        if (inputText === "") {
+            return;
+          }
         inputValue.push(inputText);
         scoreValue.push(score);
         localStorage.setItem("Initials", JSON.stringify(inputValue));
         localStorage.setItem("Score", JSON.stringify(scoreValue)); 
       });
 }
+
+
 
 // Start Button event listener that start the game 
 // startButtonEL.addEventListener("click", setTime);
