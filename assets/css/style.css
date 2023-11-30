@@ -1,3 +1,7 @@
+*{
+    background-color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+}
 header{
     display: flex;
     width: 100%;
@@ -15,10 +19,10 @@ header h2 {
    font-size: 20px;
 } 
 main{
-    border: 3px solid black;
+    /* border: 3px solid black; */
     display: flex;
     justify-content: center;
-    font-family: 'Times New Roman', Times, serif;
+    
     margin-top: 160px;
     
     
@@ -28,7 +32,7 @@ main{
     display: block;
     text-align: center;
     width: 40%;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     
 }
 
@@ -36,13 +40,13 @@ main{
     display: block;
     text-align: left;
     width: 40%;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 
 
 main h3 {
     /* border: 3px solid black; */
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -50,13 +54,20 @@ main p {
 
     /* border: 3px solid black; */
     margin: 0;
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 button {
     display: block;
     margin-top: 20px;
-    font-size: 25px;
+    font-size: 30px;
+    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background-color: rgb(128, 96, 154);
+    color: aliceblue;
+    border-radius: 6px;
 }
 
 #start-button {
@@ -81,4 +92,27 @@ h1{
 #score-button {
     display: inline;
     margin-right: 20px;
+}
+
+h4 {
+    font-size: 25px;
+    border-bottom: 3px gray solid;
+}
+
+.hidden {
+    display: none;
+}
+
+#submit-button {
+    font-size: 20px;
+}
+
+#form-label{
+    font-size: 20px;
+}
+
+li{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: bisque;
 }

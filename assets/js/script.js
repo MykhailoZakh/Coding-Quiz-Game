@@ -85,8 +85,9 @@ let startButtonEL = document.querySelector("#start-button");
         gameTimeEL.textContent = ` ${secondsLeft}`;
         
         if(secondsLeft === NaN){
-            gameTimeEL.textContent = `0`;
+            // gameTimeEL.textContent = NaN;
             clearInterval(timerInterval);
+            gameTimeEL.classList.add("hidden");
         }
     
         if(secondsLeft <= 0) {
@@ -94,7 +95,8 @@ let startButtonEL = document.querySelector("#start-button");
             clearInterval(timerInterval);
             removeQuestion();
             addFinalScreen();
-            h4.textContent = '';
+            h4.classList.add("hidden");
+            // h4.textContent = '';
             // gameTimeEL.textContent = `0`
         }
        
@@ -310,7 +312,7 @@ function question4(question){
             gameTimeEL.textContent = ` ${secondsLeft}`;
             removeQuestion();
             addFinalScreen();
-            h4.textContent = '';
+            h4.classList.add("hidden");
             
         
         } else {
@@ -318,7 +320,7 @@ function question4(question){
             gameTimeEL.textContent = ` ${secondsLeft}`;
             removeQuestion();
             addFinalScreen();
-            h4.textContent = '';
+            h4.classList.add("hidden");
             
         }
 
@@ -345,8 +347,9 @@ function addFinalScreen(){
         }
     let score = secondsLeft;
     secondsLeft = NaN;
-    gameTimeEL.textContent = "0"
     
+    // gameTimeEL.textContent = "0"
+    gameTimeEL.classList.add("hidden");
     let h3 = document.createElement("h3");
     let paragraph = document.createElement("p");
     let form = document.createElement("form");
@@ -363,6 +366,8 @@ function addFinalScreen(){
     label.textContent = `Enter your initials:`;
     button.textContent = `Submit`;
     button.setAttribute("onclick", "location.href='./score.html'")
+    button.setAttribute("id", "submit-button");
+    label.setAttribute("id", "form-label");
     // a.setAttribute("href", "./score.html");
     input.setAttribute("name", "submited-initails");
     form.appendChild(label);

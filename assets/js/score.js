@@ -9,7 +9,7 @@ function addInput(){
       }
 
     let scoreList = document.querySelector("#score-list");  
-    // scoreList.innerHTML = "";
+    scoreList.innerHTML = "";
     for (let i = 0; i < inputValue.length; i++) {
         let initials = inputValue[i];
         let score = scoreValue[i];
