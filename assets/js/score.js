@@ -9,13 +9,13 @@ function addInput(){
       }
 
     let scoreList = document.querySelector("#score-list");  
-    scoreList.innerHTML = "";
+    // scoreList.innerHTML = "";
     for (let i = 0; i < inputValue.length; i++) {
         let initials = inputValue[i];
         let score = scoreValue[i];
     
         let li = document.createElement("li");
-        li.textContent = `1. ${initials} - Score: ${score}`;
+        li.textContent = `${initials} - Score: ${score}`;
         li.setAttribute("data-index", i);
         scoreList.appendChild(li);
       }

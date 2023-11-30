@@ -80,19 +80,24 @@ let startButtonEL = document.querySelector("#start-button");
 // Timer that count down from starting point to 0. Amd show it to main screen
  function setTime() {
     
-    let timerIntercal = setInterval(function(){
+    let timerInterval = setInterval(function(){
         secondsLeft--;
         gameTimeEL.textContent = ` ${secondsLeft}`;
         
-        
+        if(secondsLeft === NaN){
+            gameTimeEL.textContent = `0`;
+            clearInterval(timerInterval);
+        }
     
         if(secondsLeft <= 0) {
             let h4 = document.querySelector("h4");
-            clearInterval(timerIntercal);
+            clearInterval(timerInterval);
             removeQuestion();
             addFinalScreen();
             h4.textContent = '';
+            // gameTimeEL.textContent = `0`
         }
+       
     }, 1000);
 }
 
@@ -332,8 +337,16 @@ function removeQuestion(){
 function addFinalScreen(){
     inputValue = [];
     scoreValue =[];
+    let storedInput = JSON.parse(localStorage.getItem("Initials"));
+    let storedScore = JSON.parse(localStorage.getItem("Score"));
+        if ((storedInput !== null) && (storedScore !== null)) {
+            inputValue = storedInput;
+            scoreValue = storedScore;
+        }
     let score = secondsLeft;
-    secondsLeft = 1;
+    secondsLeft = NaN;
+    gameTimeEL.textContent = "0"
+    
     let h3 = document.createElement("h3");
     let paragraph = document.createElement("p");
     let form = document.createElement("form");
@@ -346,12 +359,17 @@ function addFinalScreen(){
     let label = document.createElement("label");
     let input = document.createElement("input");
     let button = document.createElement("button");
+    // let a = document.createElement("a");
     label.textContent = `Enter your initials:`;
     button.textContent = `Submit`;
-    input.setAttribute("name", "submited-initails")
+    button.setAttribute("onclick", "location.href='./score.html'")
+    // a.setAttribute("href", "./score.html");
+    input.setAttribute("name", "submited-initails");
     form.appendChild(label);
     form.appendChild(input);
     form.appendChild(button);
+
+    // a.appendChild(button);
 
     // Event listener for submit button
     button.addEventListener("click", function(event) {
