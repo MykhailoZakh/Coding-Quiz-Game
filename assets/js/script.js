@@ -4,7 +4,7 @@ let gameTimeEL = document.querySelector("#game-time");
 
 let containerEL = document.querySelector("#container");
 
-let secondsLeft = 10;
+let secondsLeft = 40;
 
 let questionArray = [
     ({

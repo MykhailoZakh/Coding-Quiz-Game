@@ -1,7 +1,10 @@
+/* Style for main screen */
 *{
     background-color: aliceblue;
     font-family: 'Times New Roman', Times, serif;
 }
+
+/* Styles for NAV anchor on the left and time cout on the right */
 header{
     display: flex;
     width: 100%;
@@ -18,6 +21,8 @@ header a {
 header h2 {
    font-size: 20px;
 } 
+
+/* Style for main box */
 main{
     /* border: 3px solid black; */
     display: flex;
@@ -27,7 +32,7 @@ main{
     
     
 }
-
+/* Style for container that hold main content */
 #container {
     display: block;
     text-align: center;
@@ -36,6 +41,7 @@ main{
     
 }
 
+/* Style for the questions when game started */
 #question-container {
     display: block;
     text-align: left;
@@ -43,13 +49,14 @@ main{
     /* border: 3px solid black; */
 }
 
-
+/* Style for h3 content that switching during the game */
 main h3 {
     /* border: 3px solid black; */
     font-size: 40px;
     font-weight: bold;
 }
 
+/* Style for start game screen text */
 main p {
 
     /* border: 3px solid black; */
@@ -58,6 +65,7 @@ main p {
     font-weight: bold;
 }
 
+/* Style for all buttons in the website */
 button {
     display: block;
     margin-top: 20px;
@@ -70,47 +78,55 @@ button {
     border-radius: 6px;
 }
 
+/* Style for start button */
 #start-button {
     display: inline;
     margin-top: 20px;
     font-size: 25px;
 }
 
+
+
+/* Style for pop out text with wrong correct text */
+h4 {
+    font-size: 25px;
+    border-bottom: 3px gray solid;
+}
+/* Style for submit button in the end of the game */
+#submit-button {
+    font-size: 20px;
+}
+/* class to hide time after the game */
+.hidden {
+    display: none;
+}
+/* Style for score screen */
+/* Style for main header */
 h1{
     font-size: 30px;
     font-weight: bold;
 }
 
-
+/* style for body */
 #score-body {
-    border: 3px solid black;
     display: flex;
     justify-content: center;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 160px;
 }
+
+/* style for both butons are on the screen */
 .score-button {
     display: inline;
     margin-right: 20px;
 }
 
-h4 {
-    font-size: 25px;
-    border-bottom: 3px gray solid;
-}
-
-.hidden {
-    display: none;
-}
-
-#submit-button {
-    font-size: 20px;
-}
-
+/* style for label text */
 #form-label{
     font-size: 20px;
 }
 
+/* style for the list items */
 li{
     font-size: 20px;
     font-weight: bold;
