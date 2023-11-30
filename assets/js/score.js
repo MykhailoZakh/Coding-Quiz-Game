@@ -1,6 +1,8 @@
+inputValue = [];
+scoreValue = [];
+
 function addInput(){
-    inputValue = [];
-    scoreValue = [];
+    
     let storedInput = JSON.parse(localStorage.getItem("Initials"));
     let storedScore = JSON.parse(localStorage.getItem("Score"));
     if ((storedInput !== null) && (storedScore !== null)) {
@@ -20,4 +22,13 @@ function addInput(){
         scoreList.appendChild(li);
       }
     }
+
+    let clear = document.querySelector("#clear-button")
+    clear.addEventListener("click", function() {
+      inputValue = [];
+      scoreValue = [];
+      localStorage.setItem("Initials", JSON.stringify(inputValue));
+      localStorage.setItem("Score", JSON.stringify(scoreValue)); 
+      addInput();
+    });
     addInput();
